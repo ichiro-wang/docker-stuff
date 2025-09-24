@@ -1,0 +1,14 @@
+# start from specified ubuntu image
+FROM ubuntu:24.04
+
+# specify working directory
+WORKDIR /usr/src/app
+
+# copy our script into working dir
+COPY script.sh .
+
+# instructions to install curl
+RUN apt-get update && apt-get -y install curl
+RUN chmod +x ./script.sh
+
+CMD ["./script.sh"]

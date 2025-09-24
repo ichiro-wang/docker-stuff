@@ -1,0 +1,6 @@
+# start from webservice alpine image
+FROM devopsdockeruh/simple-web-service:alpine
+
+# use 'server' as default arg
+CMD ["server"]
+

@@ -1,0 +1,16 @@
+# docker in docker (dind) with git ready
+FROM docker:25-git
+
+WORKDIR /usr/src/app
+
+ARG DOCKER_USER
+ARG DOCKER_PWD
+
+ENV DOCKER_USER=$DOCKER_USER
+ENV DOCKER_PWD=$DOCKER_PWD
+
+VOLUME /var/run/docker.sock:/var/run/docker.sock:ro
+
+RUN echo "$DOCKER_PWD"| docker login --username "$DOCKER_USER" --password-stdin
+
+ENTRYPOINT ["./builder.sh"]

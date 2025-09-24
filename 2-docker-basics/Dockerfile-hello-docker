@@ -1,0 +1,14 @@
+# start from alpine image that is smaller but no fancy tools
+FROM alpine:3.21
+
+# use /usr/src/app as out working directory
+WORKDIR /usr/src/app
+
+# copy the hello.sh file from this directory to /user/src/app 
+COPY hello.sh .
+
+# exec a command with the /bin/sh -c prefix
+RUN touch additional.txt
+
+# when running docker run the command will be as below
+CMD ./hello.sh

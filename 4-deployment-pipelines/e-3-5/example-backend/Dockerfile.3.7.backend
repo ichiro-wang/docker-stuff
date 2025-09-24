@@ -1,0 +1,15 @@
+FROM golang:1.24-alpine
+
+WORKDIR /myproject
+
+COPY . .
+
+RUN go build && \ 
+    adduser -D appuser && \ 
+    rm -rf cache common controller go.mod go.sum pgconnection router
+
+USER appuser
+
+EXPOSE 8080
+
+CMD ["./server"]
